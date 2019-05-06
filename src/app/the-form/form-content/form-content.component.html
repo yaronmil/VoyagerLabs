@@ -1,0 +1,18 @@
+  <form class="example-form" class='verticalForm'>
+    <mat-form-field>
+      <input matInput placeholder="First name" value="">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Family name" value="">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Address" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date of birth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
