@@ -9,21 +9,30 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./registration-form-content.component.css']
 })
 export class RegistrationFormContentComponent implements OnInit, OnDestroy {
+
+// will hold a referance to an observable
   subscription: Subscription;
+
+  // the registration form object
   registrationForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     familyName: new FormControl('', [Validators.required]),
     address: new FormControl(''),
     birthDate: new FormControl('', [Validators.required])
-  })
+  });
+
+  // the snack bar will show a success message
   constructor(private snackBar: MatSnackBar) { }
+
+  // function for checking if a field is valid
   hasError(fieldName: string) {
     const errors = this.registrationForm.get(fieldName).errors;
     return errors && errors.required;
   }
   ngOnInit() {
-    this.subscription = this.registrationForm.valueChanges.subscribe(_ => {
 
+    // register to on value change on the form object
+    this.subscription = this.registrationForm.valueChanges.subscribe(_ => {
       if (this.registrationForm.valid) {
         this.showMessage('All mandatory fields are valid');
       } else {
@@ -31,6 +40,8 @@ export class RegistrationFormContentComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // this will be calld when all mandatory fileds are valid
   showMessage(message: string) {
     this.snackBar.open(message, 'success', {
       duration: 0,
