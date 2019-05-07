@@ -1,18 +1,27 @@
-<form class="example-form" class='verticalForm'>
+<form [formGroup]="registrationForm" class='verticalForm' novalidate>
   <mat-form-field>
-    <input matInput placeholder="First name" value="">
+    <input matInput placeholder="First name*" formControlName="firstName">
+    <mat-error *ngIf="hasError('firstName')">
+      First Name is required.
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Family name" value="">
+    <input matInput placeholder="Family name*" formControlName="familyName">
+    <mat-error *ngIf="hasError('familyName')">
+      Family Name is required.
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Address" value="">
   </mat-form-field>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Date of birth">
+    <input matInput [matDatepicker]="picker" placeholder="Date of birth*" formControlName="birthDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="hasError('familyName')">
+      Birth Date is required.
+    </mat-error>
   </mat-form-field>
 </form>
