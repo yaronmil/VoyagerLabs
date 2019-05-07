@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-registration-form-content',
@@ -15,7 +16,7 @@ export class RegistrationFormContentComponent implements OnInit, OnDestroy {
     address: new FormControl(''),
     birthDate: new FormControl('', [Validators.required])
   })
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
   hasError(fieldName: string) {
     const errors = this.registrationForm.get(fieldName).errors;
     return errors && errors.required;
@@ -24,8 +25,15 @@ export class RegistrationFormContentComponent implements OnInit, OnDestroy {
     this.subscription = this.registrationForm.valueChanges.subscribe(_ => {
 
       if (this.registrationForm.valid) {
-        alert();
+        this.showMessage('All mandatory fields are valid');
+      } else {
+        this.snackBar.dismiss();
       }
+    });
+  }
+  showMessage(message: string) {
+    this.snackBar.open(message, 'success', {
+      duration: 0,
     });
   }
   ngOnDestroy() {
