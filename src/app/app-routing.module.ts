@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TheFormComponent } from './the-form/the-form.component';
 
 const routes: Routes = [
-  { path: 'theForm', component: TheFormComponent },
-  { path: '**',redirectTo:'theForm' }
+  { path: 'registrationForm', loadChildren: './modules/registration-form/registration-form.module#RegistrationFormModule', },
+  { path: '**', redirectTo: 'registrationForm' }
 ];
 
 @NgModule({
