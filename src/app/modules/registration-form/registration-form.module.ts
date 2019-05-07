@@ -6,10 +6,9 @@ import { RegistrationFormLayoutComponent } from './pages/registration-form-layou
 import { MaterialModule } from 'src/app/shared/material-module';
 import { RegistrationFormContentComponent } from './components/registration-form-content/registration-form-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SuccessMessageComponent } from './components/success-message/success-message.component';
 
 @NgModule({
-  declarations: [RegistrationFormLayoutComponent, RegistrationFormContentComponent, SuccessMessageComponent],
+  declarations: [RegistrationFormLayoutComponent, RegistrationFormContentComponent],
   imports: [
     CommonModule,
     RegistrationFormRoutingModule,
